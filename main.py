@@ -22,9 +22,15 @@ if __name__ == "__main__":
 
         time.sleep(1)
 
-        with open(filename, "r") as in_file:
-            time.sleep(1)
-            data = in_file.read()
+        try:
+            with open(filename, "r") as in_file:
+                try:
+                    time.sleep(1)
+                    data = in_file.read()
+                except OSError as error:
+                    print(f"{filename}: {error}")
+        except (FileExistsError, FileNotFoundError, PermissionError, OSError) as error:
+            print(f"{filename}: {error}")
 
         if data == "":
             continue
@@ -51,9 +57,20 @@ if __name__ == "__main__":
                 )
                 continue
 
-            with open(filename, "w") as out_file:
-                time.sleep(1)
-                out_file.write(str(results))
+            try:
+                with open(filename, "w") as out_file:
+                    try:
+                        time.sleep(1)
+                        out_file.write(str(results))
+                    except OSError as error:
+                        print(f"{filename}: {error}")
+            except (
+                FileExistsError,
+                FileNotFoundError,
+                PermissionError,
+                OSError,
+            ) as error:
+                print(f"{filename}: {error}")
 
             print(f"Listening for new changes to {filename} ...")
 
