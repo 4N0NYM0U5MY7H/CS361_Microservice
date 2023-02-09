@@ -9,6 +9,31 @@
 ## Sending a Request
 Send a "`request`" to this microservice by updating `requests.txt`.
 
+```Python
+# Example Client Program using Python
+
+# Where <path_to_requests_file> is in the same directory as the microservice
+path_to_requests_file = "requests.txt"
+
+# where <path_to_response_file> is in the same directory as the microservice
+path_to_response_file = "response.txt"
+
+# Send the request to the <path_to_request_file>
+with open(path_to_requests_file, "w") as out_file:
+    out_file.write("usd,eur")
+
+# Recieve the response from the <path_to_response_file>
+with open(path_to_response_file, "r") as in_file:
+    exchange_rate = in_file.readline()
+
+# View the results
+print(f"The exchange rate from USD to EUR is {exchange_rate}.")
+```
+```bash
+# Expected Output
+>>> The exchange rate from USD to EUR is 0.932527.
+```
+
 ![Add "USD,EUR" to the file named requests.txt.](.github/send-request.gif)
 
 ## Receving a Response
