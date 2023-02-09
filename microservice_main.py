@@ -21,7 +21,7 @@ if __name__ == "__main__":
     exchange_rate.create_file(response_file)
     print(f"Listening for requests from {request_file} ...")
 
-    previous_data = ""
+    previous_request = ""
 
     try:
         while True:
@@ -56,9 +56,12 @@ if __name__ == "__main__":
             #   a comma
             #   3 alphabet characters (not case senstaive)
             # ex: USD,EUR
-            if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data) and data != previous_data:
+            if (
+                re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data)
+                and data != previous_request
+            ):
                 print("Request Received...\nProcessing...")
-                previous_data = data
+                previous_request = data
 
                 # Split and standardize the request data.
                 currencies_to_exchange = data.split(",")
