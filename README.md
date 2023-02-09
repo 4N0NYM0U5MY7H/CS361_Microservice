@@ -7,6 +7,28 @@
 </div>
 <br>
 
+## Installation
+To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
+
+### From the Termial
+```bash
+# Clone this repository
+$ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
+
+# Go into the directory
+$ cd CS361_Partner_Microservice
+```
+
+### More Options:
+For more cloning options, please visit the [GitHub Docs page for cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+
+## Dependencies
+This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
+```bash
+# Install requests
+$ python -m pip install requests
+```
+
 ## Sending a Request
 Send a "`request`" to this microservice by updating `requests.txt`.
 
@@ -45,27 +67,8 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 ## Animated Demo
 <img src=".github/request-response.gif" height="350px">
 
-## Installation
-To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
-
-### From the Termial
-```bash
-# Clone this repository
-$ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
-
-# Go into the directory
-$ cd CS361_Partner_Microservice
-```
-
-### More Options:
-For more cloning options, please visit the [GitHub Docs page for cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-
-## Dependencies
-This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
-```bash
-# Install requests
-$ python -m pip install requests
-```
+## Sequence Diagram
+<img src=".github/sequence-diagram.png" height="500px">
 
 ## Acknowledgements
 This microservice would not be possible without the [Free and Open Access ExchangeRate-API](https://www.exchangerate-api.com/docs/free) endpoint.
