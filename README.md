@@ -6,9 +6,17 @@
 
 </div>
 
-## Installation
-<hr>
+## Sending a Request
+Send a "`request`" to this microservice by updating `requests.txt`.
 
+![Add "USD,EUR" to the file named requests.txt.](.github/send-request.gif)
+
+## Receving a Response
+If the "`request`" was valid, this microservice will send a response to the `requests.txt`.
+
+![Microservice updates the contents of the file named requests.txt with "0.932527".](.github/send-response.gif)
+
+## Installation
 To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
 
 ### From the Termial
@@ -55,23 +63,13 @@ $ cd CS361_Partner_Microservice
 For more cloning options, please visit the [GitHub Docs page for cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 ## Dependencies
-<hr>
-
 This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
 ```bash
 # Install requests
 $ python -m pip install requests
 ```
 
-## Sending a Request
-<hr>
-
-
-## Receving a Request
-<hr>
-
 ## Acknowledgements
-<hr>
+This microservice would not be possible without the [Free and Open Access ExchangeRate-API](https://www.exchangerate-api.com/docs/free) endpoint.
 
 ## License
-<hr>
