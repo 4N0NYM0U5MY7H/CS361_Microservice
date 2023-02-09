@@ -42,6 +42,7 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 >>> The exchange rate from USD to EUR is 0.932527.
 ```
 
+## Animated Demo
 <img src=".github/request-response.gif" height="350px">
 
 ## Installation
