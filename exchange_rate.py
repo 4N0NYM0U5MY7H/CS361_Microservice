@@ -13,20 +13,25 @@ __version__ = "1.0.0"
 # public interface
 
 
-def get_filepath():
-    """Returns the file path for the desired request and response file."""
+def request_path():
+    """Returns the file path for the desired request file."""
     return "requests.txt"
 
 
-def get_api_url():
+def response_path():
+    """Returns the file path for the desired reponse file."""
+    return "response.txt"
+
+
+def api_url():
     """Returns the Open Acess ExchangeRate-API URL endpoint."""
     return "https://open.er-api.com/v6/latest/"
 
 
-def create_file():
-    """Creates the desired request and response file if it does not exist."""
+def create_file(filepath):
+    """Creates the desired request file if it does not exist."""
     try:
-        with open(get_filepath(), "r") as in_file:
+        with open(filepath, "r") as in_file:
             try:
                 in_file.readline()
             except OSError as error:
@@ -36,8 +41,9 @@ def create_file():
         return
     except FileNotFoundError:
         try:
-            with open(get_filepath(), "w") as in_file:
+            with open(filepath, "w") as in_file:
                 try:
+                    print(f'Creating new file "{filepath}" ...')
                     return
                 except OSError as error:
                     print(f"Create File: {error}")
