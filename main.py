@@ -8,38 +8,42 @@
 import requests
 import time
 import re
+import exchange_rate
 
 
 if __name__ == "__main__":
 
-    filename = "requests.txt"
-    api_url = "https://open.er-api.com/v6/latest/"
+    filename = exchange_rate.get_filepath()
 
     print("Starting Microservice...")
-    print(f"Listening for changes to {filename} ...")
+    exchange_rate.create_file()
+    print(f"Listening for requests from {filename} ...")
 
     try:
         while True:
+            api_url = exchange_rate.get_api_url()
             time.sleep(1)
 
             # Check for a request to the microservice.
             try:
                 with open(filename, "r") as in_file:
                     try:
-                        time.sleep(1)
                         data = in_file.read()
                     except OSError as error:
                         print(f"Receive Request: {error}")
-                        print(f"Listening for changes to {filename} ...")
+                        time.sleep(3)
+                        print(f"Listening for requests from {filename} ...")
                         continue
-            except (
-                FileExistsError,
-                FileNotFoundError,
-                PermissionError,
-                OSError,
-            ) as error:
+            except PermissionError as error:
                 print(f"Receive Request: {error}")
-                print(f"Listening for changes to {filename} ...")
+                time.sleep(3)
+                print(f"Listening for requests from {filename} ...")
+                continue
+            except (FileNotFoundError) as error:
+                exchange_rate.create_file()
+                print(f"Receive Request: {error}")
+                time.sleep(3)
+                print(f"Listening for requests from {filename} ...")
                 continue
 
             # Validate request using Regular Express:
@@ -49,7 +53,6 @@ if __name__ == "__main__":
             #   3 alphabet characters (not case senstaive)
             # ex: USD,EUR
             if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
-                time.sleep(1)
                 print("Request Received...\nProcessing...")
 
                 # Split and standardize the request data.
@@ -58,26 +61,38 @@ if __name__ == "__main__":
                 target_currency = currencies_to_exchange[1].upper()
 
                 # Generate the API URL.
-                if api_url == "https://open.er-api.com/v6/latest/":
+                if api_url == exchange_rate.get_api_url():
                     api_url += f"{base_currency}"
 
                 # Get ExchangeRate-API data as a JSON object.
                 try:
                     exchange_rate_data = requests.get(api_url).json()
+                    if exchange_rate_data["result"] == "error":
+                        raise requests.exceptions.RequestException
                     currencies = exchange_rate_data["rates"]
-                except requests.exceptions.RequestException as error:
-                    print(f"exchange_rate_data: {error}")
-                    print(f"Listening for changes to {filename} ...")
+                except requests.ConnectionError as error:
+                    print(f"ExchangeRate-API: {error}")
+                    time.sleep(3)
+                    print(f"Listening for requests from {filename} ...")
+                    continue
+                except requests.exceptions.HTTPError as error:
+                    print(f"ExchangeRate-API: {error}")
+                    time.sleep(3)
+                    print(f"Listening for requests from {filename} ...")
+                    continue
+                except requests.exceptions.RequestException:
+                    print(f'ExchangeRate-API: unsupported-code "{base_currency}"')
+                    time.sleep(3)
+                    print(f"Listening for requests from {filename} ...")
                     continue
 
                 # Make sure the target currency is supported.
                 if target_currency in currencies:
                     results = currencies[target_currency]
                 else:
-                    print(
-                        f"target_currency: {target_currency} is not a supported currency..."
-                    )
-                    print(f"Listening for changes to {filename} ...")
+                    print(f'ExchangeRate-API: unsupported-code "{target_currency}"')
+                    time.sleep(3)
+                    print(f"Listening for requests from {filename} ...")
                     continue
 
                 # Send the exhange rate as a response by saving to a file.
@@ -87,20 +102,19 @@ if __name__ == "__main__":
                             time.sleep(1)
                             out_file.write(str(results))
                         except OSError as error:
-                            print(f"{filename}: {error}")
-                            print(f"Listening for changes to {filename} ...")
+                            print(f"Send Response: {error}")
+                            time.sleep(3)
+                            print(f"Listening for requests from {filename} ...")
                             continue
-                except (
-                    FileExistsError,
-                    FileNotFoundError,
-                    PermissionError,
-                    OSError,
-                ) as error:
-                    print(f"{filename}: {error}")
-                    print(f"Listening for changes to {filename} ...")
+                except (FileNotFoundError, PermissionError, OSError) as error:
+                    print(f"Send Response: {error}")
+                    time.sleep(3)
+                    print(f"Listening for requests from {filename} ...")
                     continue
 
-                print(f"")
+                print(f"Sending response to {filename} ...")
+                time.sleep(1)
+                print(f"Listening for new requests {filename} ...")
 
             else:
                 continue
