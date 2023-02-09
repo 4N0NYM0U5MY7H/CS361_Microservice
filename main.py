@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
         time.sleep(1)
 
+        # Check for a request to process.
         try:
             with open(filename, "r") as in_file:
                 try:
@@ -32,23 +33,30 @@ if __name__ == "__main__":
         except (FileExistsError, FileNotFoundError, PermissionError, OSError) as error:
             print(f"{filename}: {error}")
 
-        if data == "":
-            continue
-
+        # Validate request using Regular Express:
+        # data must match the following pattern:
+        #   3 alphabet characters (not case senstaive)
+        #   a comma
+        #   3 alphabet characters (not case senstaive)
+        # ex: USD,EUR
         if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
             time.sleep(1)
             print("Request Received...\nProcessing...")
 
+            # Split and standardize the request data.
             currencies_to_exchange = data.split(",")
             base_currency = currencies_to_exchange[0].upper()
             target_currency = currencies_to_exchange[1].upper()
 
+            # Generate the API URL.
             if api_url == "https://open.er-api.com/v6/latest/":
                 api_url += f"{base_currency}"
 
+            # Get ExchangeRate-API data as a JSON object.
             exchange_rate_data = requests.get(api_url).json()
             currencies = exchange_rate_data["rates"]
 
+            # Make sure the target currency is supported.
             if target_currency in currencies:
                 results = currencies[target_currency]
             else:
@@ -57,6 +65,7 @@ if __name__ == "__main__":
                 )
                 continue
 
+            # Send the exhange rate as a response by saving to a file.
             try:
                 with open(filename, "w") as out_file:
                     try:
