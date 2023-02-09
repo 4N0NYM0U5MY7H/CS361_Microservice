@@ -13,37 +13,41 @@ import exchange_rate
 
 if __name__ == "__main__":
 
-    filename = exchange_rate.get_filepath()
+    request_file = exchange_rate.request_path()
+    response_file = exchange_rate.response_path()
 
     print("Starting Microservice...")
-    exchange_rate.create_file()
-    print(f"Listening for requests from {filename} ...")
+    exchange_rate.create_file(request_file)
+    exchange_rate.create_file(response_file)
+    print(f"Listening for requests from {request_file} ...")
+
+    previous_data = ""
 
     try:
         while True:
-            api_url = exchange_rate.get_api_url()
+            api_url = exchange_rate.api_url()
             time.sleep(1)
 
             # Check for a request to the microservice.
             try:
-                with open(filename, "r") as in_file:
+                with open(request_file, "r") as in_file:
                     try:
                         data = in_file.read()
                     except OSError as error:
                         print(f"Receive Request: {error}")
                         time.sleep(3)
-                        print(f"Listening for requests from {filename} ...")
+                        print(f"Listening for requests from {request_file} ...")
                         continue
             except PermissionError as error:
                 print(f"Receive Request: {error}")
                 time.sleep(3)
-                print(f"Listening for requests from {filename} ...")
+                print(f"Listening for requests from {request_file} ...")
                 continue
             except (FileNotFoundError) as error:
-                exchange_rate.create_file()
                 print(f"Receive Request: {error}")
+                exchange_rate.create_file(request_file)
                 time.sleep(3)
-                print(f"Listening for requests from {filename} ...")
+                print(f"Listening for requests from {request_file} ...")
                 continue
 
             # Validate request using Regular Express:
@@ -52,8 +56,9 @@ if __name__ == "__main__":
             #   a comma
             #   3 alphabet characters (not case senstaive)
             # ex: USD,EUR
-            if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
+            if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data) and data != previous_data:
                 print("Request Received...\nProcessing...")
+                previous_data = data
 
                 # Split and standardize the request data.
                 currencies_to_exchange = data.split(",")
@@ -61,7 +66,7 @@ if __name__ == "__main__":
                 target_currency = currencies_to_exchange[1].upper()
 
                 # Generate the API URL.
-                if api_url == exchange_rate.get_api_url():
+                if api_url == exchange_rate.api_url():
                     api_url += f"{base_currency}"
 
                 # Get ExchangeRate-API data as a JSON object.
@@ -73,17 +78,17 @@ if __name__ == "__main__":
                 except requests.ConnectionError as error:
                     print(f"ExchangeRate-API: {error}")
                     time.sleep(3)
-                    print(f"Listening for requests from {filename} ...")
+                    print(f"Listening for requests from {request_file} ...")
                     continue
                 except requests.exceptions.HTTPError as error:
                     print(f"ExchangeRate-API: {error}")
                     time.sleep(3)
-                    print(f"Listening for requests from {filename} ...")
+                    print(f"Listening for requests from {request_file} ...")
                     continue
                 except requests.exceptions.RequestException:
                     print(f'ExchangeRate-API: unsupported-code "{base_currency}"')
                     time.sleep(3)
-                    print(f"Listening for requests from {filename} ...")
+                    print(f"Listening for requests from {request_file} ...")
                     continue
 
                 # Make sure the target currency is supported.
@@ -92,29 +97,35 @@ if __name__ == "__main__":
                 else:
                     print(f'ExchangeRate-API: unsupported-code "{target_currency}"')
                     time.sleep(3)
-                    print(f"Listening for requests from {filename} ...")
+                    print(f"Listening for requests from {request_file} ...")
                     continue
 
                 # Send the exhange rate as a response by saving to a file.
                 try:
-                    with open(filename, "w") as out_file:
+                    with open(response_file, "w") as out_file:
                         try:
                             time.sleep(1)
                             out_file.write(str(results))
                         except OSError as error:
                             print(f"Send Response: {error}")
                             time.sleep(3)
-                            print(f"Listening for requests from {filename} ...")
+                            print(f"Listening for requests from {request_file} ...")
                             continue
-                except (FileNotFoundError, PermissionError, OSError) as error:
-                    print(f"Send Response: {error}")
+                except PermissionError as error:
+                    print(f"ExchangeRate-API: {error}")
                     time.sleep(3)
-                    print(f"Listening for requests from {filename} ...")
+                    print(f"Listening for requests from {request_file} ...")
+                    continue
+                except FileNotFoundError as error:
+                    print(f"Send Response: {error}")
+                    exchange_rate.create_file(response_file)
+                    time.sleep(3)
+                    print(f"Listening for requests from {request_file} ...")
                     continue
 
-                print(f"Sending response to {filename} ...")
+                print(f"Sending response to {response_file} ...")
                 time.sleep(1)
-                print(f"Listening for new requests {filename} ...")
+                print(f"Listening for new requests {request_file} ...")
 
             else:
                 continue
