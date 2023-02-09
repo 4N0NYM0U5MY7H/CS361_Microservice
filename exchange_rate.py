@@ -5,16 +5,26 @@
 #              rate microservice.
 
 
+r"""This modules contains the functions for the currency exchange rate microservice."""
+
+__version__ = "1.0.0"
+
+# --------------------------------------------------------------------
+# public interface
+
+
 def get_filepath():
+    """Returns the file path for the desired request and response file."""
     return "requests.txt"
 
 
 def get_api_url():
+    """Returns the Open Acess ExchangeRate-API URL endpoint."""
     return "https://open.er-api.com/v6/latest/"
 
 
 def create_file():
-    """Create a requests file if it does not exist."""
+    """Creates the desired request and response file if it does not exist."""
     try:
         with open(get_filepath(), "r") as in_file:
             try:
