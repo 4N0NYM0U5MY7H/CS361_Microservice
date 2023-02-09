@@ -18,70 +18,91 @@ if __name__ == "__main__":
     print("Starting Microservice...")
     print(f"Listening for changes to {filename} ...")
 
-    while True:
-
-        time.sleep(1)
-
-        # Check for a request to process.
-        try:
-            with open(filename, "r") as in_file:
-                try:
-                    time.sleep(1)
-                    data = in_file.read()
-                except OSError as error:
-                    print(f"{filename}: {error}")
-        except (FileExistsError, FileNotFoundError, PermissionError, OSError) as error:
-            print(f"{filename}: {error}")
-
-        # Validate request using Regular Express:
-        # data must match the following pattern:
-        #   3 alphabet characters (not case senstaive)
-        #   a comma
-        #   3 alphabet characters (not case senstaive)
-        # ex: USD,EUR
-        if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
+    try:
+        while True:
             time.sleep(1)
-            print("Request Received...\nProcessing...")
 
-            # Split and standardize the request data.
-            currencies_to_exchange = data.split(",")
-            base_currency = currencies_to_exchange[0].upper()
-            target_currency = currencies_to_exchange[1].upper()
-
-            # Generate the API URL.
-            if api_url == "https://open.er-api.com/v6/latest/":
-                api_url += f"{base_currency}"
-
-            # Get ExchangeRate-API data as a JSON object.
-            exchange_rate_data = requests.get(api_url).json()
-            currencies = exchange_rate_data["rates"]
-
-            # Make sure the target currency is supported.
-            if target_currency in currencies:
-                results = currencies[target_currency]
-            else:
-                print(
-                    f"target_currency: {target_currency} is not a supported currency..."
-                )
-                continue
-
-            # Send the exhange rate as a response by saving to a file.
+            # Check for a request to the microservice.
             try:
-                with open(filename, "w") as out_file:
+                with open(filename, "r") as in_file:
                     try:
                         time.sleep(1)
-                        out_file.write(str(results))
+                        data = in_file.read()
                     except OSError as error:
-                        print(f"{filename}: {error}")
+                        print(f"Receive Request: {error}")
+                        print(f"Listening for changes to {filename} ...")
+                        continue
             except (
                 FileExistsError,
                 FileNotFoundError,
                 PermissionError,
                 OSError,
             ) as error:
-                print(f"{filename}: {error}")
+                print(f"Receive Request: {error}")
+                print(f"Listening for changes to {filename} ...")
+                continue
 
-            print(f"Listening for new changes to {filename} ...")
+            # Validate request using Regular Express:
+            # data must match the following pattern:
+            #   3 alphabet characters (not case senstaive)
+            #   a comma
+            #   3 alphabet characters (not case senstaive)
+            # ex: USD,EUR
+            if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
+                time.sleep(1)
+                print("Request Received...\nProcessing...")
 
-        else:
-            continue
+                # Split and standardize the request data.
+                currencies_to_exchange = data.split(",")
+                base_currency = currencies_to_exchange[0].upper()
+                target_currency = currencies_to_exchange[1].upper()
+
+                # Generate the API URL.
+                if api_url == "https://open.er-api.com/v6/latest/":
+                    api_url += f"{base_currency}"
+
+                # Get ExchangeRate-API data as a JSON object.
+                try:
+                    exchange_rate_data = requests.get(api_url).json()
+                    currencies = exchange_rate_data["rates"]
+                except requests.exceptions.RequestException as error:
+                    print(f"exchange_rate_data: {error}")
+                    print(f"Listening for changes to {filename} ...")
+                    continue
+
+                # Make sure the target currency is supported.
+                if target_currency in currencies:
+                    results = currencies[target_currency]
+                else:
+                    print(
+                        f"target_currency: {target_currency} is not a supported currency..."
+                    )
+                    print(f"Listening for changes to {filename} ...")
+                    continue
+
+                # Send the exhange rate as a response by saving to a file.
+                try:
+                    with open(filename, "w") as out_file:
+                        try:
+                            time.sleep(1)
+                            out_file.write(str(results))
+                        except OSError as error:
+                            print(f"{filename}: {error}")
+                            print(f"Listening for changes to {filename} ...")
+                            continue
+                except (
+                    FileExistsError,
+                    FileNotFoundError,
+                    PermissionError,
+                    OSError,
+                ) as error:
+                    print(f"{filename}: {error}")
+                    print(f"Listening for changes to {filename} ...")
+                    continue
+
+                print(f"")
+
+            else:
+                continue
+    except KeyboardInterrupt:
+        print("Terminating microservice...")
