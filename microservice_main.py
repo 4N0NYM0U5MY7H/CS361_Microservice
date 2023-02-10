@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
                 print(f"Sending response to {response_file} ...")
                 time.sleep(1)
-                print(f"Listening for new requests {request_file} ...")
+                print(f"Listening for new requests from {request_file} ...")
 
             else:
                 continue
