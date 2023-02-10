@@ -49,14 +49,8 @@ After a valid "`request`", the microservice will send a reponse to `response.txt
 ### Sample Client in Python
 ```Python
 # Simple example client to run with the Currency Exchange Microservice
-
-# simple validation function for received response
-def is_number(data):
-    try:
-        float(data)
-        return True
-    except ValueError:
-        return False
+import time
+import re
 
 # <path_to_requests_file> points to the request file in the microservice directory
 path_to_requests_file = "requests.txt"
@@ -73,20 +67,21 @@ with open(path_to_requests_file, "w") as out_file:
 
 # Poll the <path_to_response_file> until you receive a response
 while True:
-        # Receive the response from the <path_to_response_file>
-        with open(path_to_response_file, "r") as in_file:
-            exchange_rate = in_file.readline()
-        
-        # No response received
-        if exhchange_rate != "":
-            continue
-        # You already have this reponse data
-        if echange_rate == previous_response:
-            continue
-        # Valid reponse received
-        if is_number(exchange_rate):
-            previous_reponse = exchange_rate
-            break   
+    time.sleep(1)
+    # Receive the response from the <path_to_response_file>
+    with open(path_to_response_file, "r") as in_file:
+        exchange_rate = in_file.readline()
+
+    # No response received
+    if exchange_rate == "":
+        continue
+    # You already have this reponse data
+    if exchange_rate == previous_response:
+        continue
+    # Valid reponse received
+    if re.search("^(0|[1-9]\d*)?(\.\d+)?(?<=\d)$", exchange_rate):
+        previous_reponse = exchange_rate
+        break
 
 # View the results
 print(f"The exchange rate from USD to EUR is {exchange_rate}.")
