@@ -98,3 +98,4 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 This microservice would not be possible without the [Free and Open Access ExchangeRate-API](https://www.exchangerate-api.com/docs/free) endpoint.
 
 ## License
+[MIT License](license)
