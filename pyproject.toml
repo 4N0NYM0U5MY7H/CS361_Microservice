@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "currencyexchangerate"
+version = "1.0.0"
+description = ""
+authors = ["August Frisk <friska@oregonstate.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
