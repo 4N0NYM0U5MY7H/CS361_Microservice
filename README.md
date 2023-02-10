@@ -10,51 +10,83 @@
 ## Installation
 To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
 
+### Dependencies
+This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
+
 ### From the Termial
 ```bash
+# Move to the desired install directory
+$ cd Documents/GitHub
+
 # Clone this repository
 $ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 
 # Go into the directory
 $ cd CS361_Partner_Microservice
+
+# Install dependencies
+$ python -m pip install requests
+
+# Run the microservice
+$ python microservice_main.py
 ```
 
 ### More Options:
 For more cloning options, please visit the [GitHub Docs page for cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-## Dependencies
-This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
-```bash
-# Install requests
-$ python -m pip install requests
-```
+## Using the Microservice
+### Sending a Request
+Send a "`request`" to this microservice by updating `requests.txt` with two ISO 4217 Three Letter Currency Codes - e.g. `USD` for US Dollars, `EUR` for Euro etc. - separated by a comma.
 
-## Sending a Request
-Send a "`request`" to this microservice by updating `requests.txt`.
+> Here's the list of [supported currency codes](https://www.exchangerate-api.com/docs/supported-currencies).
 
+### Receving a Response
+After a valid "`request`", the microservice will send a reponse to `response.txt` containing the exchange rate - e.g. request: `USD,EUR` response: `0.932527`.
+
+### Animated Demo
+<img src=".github/request-response.gif" height="350px">
+
+### Sample Client in Python
 ```Python
-# Example Client code using Python
+# Simple example client to run with the Currency Exchange Microservice
+
+# simple validation function for received response
+def is_number(data):
+    try:
+        float(data)
+        return True
+    except ValueError:
+        return False
 
 # <path_to_requests_file> points to the request file in the microservice directory
 path_to_requests_file = "requests.txt"
 
-# Send the request to the <path_to_request_file>
-with open(path_to_requests_file, "w") as out_file:
-    out_file.write("usd,eur")
-```
-
-## Receving a Response
-If the "`request`" was valid, this microservice will send a response to the `requests.txt`.
-
-```Python
-# Example Client code using Python
-
 # <path_to_response_file> points to the request file in the microservice directory
 path_to_response_file = "response.txt"
 
-# Recieve the response from the <path_to_response_file>
-with open(path_to_response_file, "r") as in_file:
-    exchange_rate = in_file.readline()
+# variable to ensure the new reponse isn't the old response
+previous_response = ""
+
+# Send the request to the <path_to_request_file>
+with open(path_to_requests_file, "w") as out_file:
+    out_file.write("usd,eur")
+
+# Poll the <path_to_response_file> until you receive a response
+while True:
+        # Receive the response from the <path_to_response_file>
+        with open(path_to_response_file, "r") as in_file:
+            exchange_rate = in_file.readline()
+        
+        # No response received
+        if exhchange_rate != "":
+            continue
+        # You already have this reponse data
+        if echange_rate == previous_response:
+            continue
+        # Valid reponse received
+        if is_number(exchange_rate):
+            previous_reponse = exchange_rate
+            break   
 
 # View the results
 print(f"The exchange rate from USD to EUR is {exchange_rate}.")
@@ -64,11 +96,8 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 >>> The exchange rate from USD to EUR is 0.932527.
 ```
 
-## Animated Demo
-<img src=".github/request-response.gif" height="350px">
-
 ## Sequence Diagram
-<img src=".github/sequence-diagram.png" height="500px">
+<img src=".github/sequence-diagram.png" width="700px">
 
 ## Acknowledgements
 This microservice would not be possible without the [Free and Open Access ExchangeRate-API](https://www.exchangerate-api.com/docs/free) endpoint.
