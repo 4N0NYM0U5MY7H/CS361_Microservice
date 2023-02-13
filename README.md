@@ -92,6 +92,8 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 >>> The exchange rate from USD to EUR is 0.932527.
 ```
 
+> Note: The microservice must be running BEFORE the client sends a request.
+
 ## Sequence Diagram
 <img src=".github/sequence-diagram.png" width="700px">
 
