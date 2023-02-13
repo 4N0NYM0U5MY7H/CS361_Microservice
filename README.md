@@ -21,14 +21,14 @@ $ cd Documents/GitHub
 # Clone this repository
 $ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 
-# Go into the directory
-$ cd CS361_Partner_Microservice
+# Go into the microservice directory
+$ cd CS361_Partner_Microservice/exchange_rate
 
 # Install dependencies
 $ python -m pip install requests
 
 # Run the microservice
-$ python microservice_main.py
+$ python main.py
 ```
 
 ### More Options:
