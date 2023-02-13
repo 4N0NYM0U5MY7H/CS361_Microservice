@@ -21,8 +21,6 @@ if __name__ == "__main__":
     exchange_rate.create_file(response_file)
     print(f"Listening for requests from {request_file} ...")
 
-    previous_request = ""
-
     try:
         while True:
             api_url = exchange_rate.api_url()
@@ -43,7 +41,7 @@ if __name__ == "__main__":
                 time.sleep(3)
                 print(f"Listening for requests from {request_file} ...")
                 continue
-            except (FileNotFoundError) as error:
+            except FileNotFoundError as error:
                 print(f"Receive Request: {error}")
                 exchange_rate.create_file(request_file)
                 time.sleep(3)
@@ -56,12 +54,29 @@ if __name__ == "__main__":
             #   a comma
             #   3 alphabet characters (not case senstaive)
             # ex: USD,EUR
-            if (
-                re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data)
-                and data != previous_request
-            ):
+            if re.search("^[a-zA-z]{3},[a-zA-z]{3}$", data):
                 print("Request Received...\nProcessing...")
-                previous_request = data
+
+                try:
+                    with open(request_file, "w") as in_file:
+                        try:
+                            in_file.write("Request Recieved")
+                        except OSError as error:
+                            print(f"Recieve Request: {error}")
+                            time.sleep(3)
+                            print(f"Listening for requests from {request_file} ...")
+                            continue
+                except PermissionError as error:
+                    print(f"Receive Request: {error}")
+                    time.sleep(3)
+                    print(f"Listening for requests from {request_file} ...")
+                    continue
+                except FileNotFoundError as error:
+                    print(f"Receive Request: {error}")
+                    exchange_rate.create_file(request_file)
+                    time.sleep(3)
+                    print(f"Listening for requests from {request_file} ...")
+                    continue
 
                 # Split and standardize the request data.
                 currencies_to_exchange = data.split(",")
