@@ -89,7 +89,7 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 ```
 ```bash
 # Expected Output
->>> The exchange rate from USD to EUR is 0.932527.
+The exchange rate from USD to EUR is 0.932527.
 ```
 
 > **Note**: The microservice must be running BEFORE the client sends a request.
