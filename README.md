@@ -16,19 +16,19 @@ This microservices requires the [requests 2.28+ python library](https://pypi.org
 ### From the Termial
 ```bash
 # Move to the desired install directory
-$ cd Documents/GitHub
+cd Documents/GitHub
 
 # Clone this repository
-$ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
+git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 
 # Go into the microservice directory
-$ cd CS361_Partner_Microservice/exchange_rate
+cd CS361_Partner_Microservice/exchange_rate
 
 # Install dependencies
-$ python -m pip install requests
+python -m pip install requests
 
 # Run the microservice
-$ python main.py
+python main.py
 ```
 
 ### More Options:
@@ -94,6 +94,130 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 
 > **Note**: The microservice must be running BEFORE the client sends a request.
 
+## Troubleshooting
+* Check that you have [python 3.9+](https://www.python.org/downloads/release/python-390/) installed on your local machine
+  ```bash
+  python --version
+  ```
+* Check that you have [requests 2.28+](https://pypi.org/project/requests/) installed on your local machine
+  ```bash
+  python -m pip install requests
+  ```
+* Check that the `exchange_rate` folder is in the root of your project
+  ```
+  project
+  |   README.md
+  |   project files
+  |   ...
+  |___exchage_rate
+  |   |   exchage_rate.py
+  |   |   main.py
+  |   |   requests.txt
+  |   |   response.txt
+  |
+  |___folder
+      |   folder files
+      |   ...
+      |
+      |___subfolder
+          |   subfolder files
+          |   ...   
+  ```
+  * **Run the microservice from the `exhange_rate` directory**.
+    ```bash
+    # Move into the exchange_rate directory
+    cd exchange_rate
+    # Start the microservice
+    python main.py
+    ```
+    * If you do NOT, then you will encounter issues related to the communication files.
+        ```bash
+        # DO NOT do this!
+        python exchange_rate/main.py # Will cause issues with "requests.txt" and "response.txt"
+        ``` 
+* Check that your program is sending requests to `exchange_rate/requests.txt`
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   requests.txt 
+  
+  # from project root
+  path_to_requests_file = "exchange_rate/requests.txt"
+  ```
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   requests.txt
+  |
+  |___folder
+      |   ...  
+  
+  # from project folder
+  path_to_requests_file = "../exchange_rate/requests.txt"
+  ```
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   requests.txt
+  |
+  |___folder
+      |   ...
+      |
+      |___subfolder
+          |   ...   
+
+  # from project subfolder
+  path_to_requests_file = "../../exchange_rate/requests.txt"
+  ```
+  > **[Learn more about paths](https://www.redhat.com/sysadmin/linux-path-absolute-relative)**.
+
+* Check that your program is receiving responses from `exchange_rate/response.txt`
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   response.txt 
+  
+  # from project root
+  path_to_response_file = "exchange_rate/response.txt"
+  ```
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   response.txt
+  |
+  |___folder
+      |   ...  
+  
+  # from project folder
+  path_to_response_file = "../exchange_rate/response.txt"
+  ```
+  ```Python
+  project
+  |   ...
+  |___exchage_rate
+  |   |   ...
+  |   |   response.txt
+  |
+  |___folder
+      |   ...
+      |
+      |___subfolder
+          |   ...   
+
+  # from project subfolder
+  path_to_response_file = "../../exchange_rate/response.txt"
+  ```
+ 
 ## Sequence Diagram
 <img src=".github/sequence-diagram.png" width="700px">
 
