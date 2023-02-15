@@ -136,15 +136,18 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
         python exchange_rate/main.py # Will cause issues with "requests.txt" and "response.txt"
         ``` 
 * Check that your program is sending requests to `exchange_rate/requests.txt`
+* Check that your program is receiving responses from `exchange_rate/response.txt`
   ```Python
   project
   |   ...
   |___exchage_rate
   |   |   ...
   |   |   requests.txt 
+  |   |   response.txt
   
   # from project root
   path_to_requests_file = "exchange_rate/requests.txt"
+  path_to_response_file = "exchange_rate/response.txt"
   ```
   ```Python
   project
@@ -152,12 +155,14 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
   |___exchage_rate
   |   |   ...
   |   |   requests.txt
+  |   |   response.txt
   |
   |___folder
       |   ...  
   
   # from project folder
   path_to_requests_file = "../exchange_rate/requests.txt"
+  path_to_response_file = "../exchange_rate/response.txt"
   ```
   ```Python
   project
@@ -165,6 +170,7 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
   |___exchage_rate
   |   |   ...
   |   |   requests.txt
+  |   |   response.txt
   |
   |___folder
       |   ...
@@ -174,50 +180,10 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 
   # from project subfolder
   path_to_requests_file = "../../exchange_rate/requests.txt"
+  path_to_response_file = "../../exchange_rate/response.txt"
   ```
   > **[Learn more about paths](https://www.redhat.com/sysadmin/linux-path-absolute-relative)**.
 
-* Check that your program is receiving responses from `exchange_rate/response.txt`
-  ```Python
-  project
-  |   ...
-  |___exchage_rate
-  |   |   ...
-  |   |   response.txt 
-  
-  # from project root
-  path_to_response_file = "exchange_rate/response.txt"
-  ```
-  ```Python
-  project
-  |   ...
-  |___exchage_rate
-  |   |   ...
-  |   |   response.txt
-  |
-  |___folder
-      |   ...  
-  
-  # from project folder
-  path_to_response_file = "../exchange_rate/response.txt"
-  ```
-  ```Python
-  project
-  |   ...
-  |___exchage_rate
-  |   |   ...
-  |   |   response.txt
-  |
-  |___folder
-      |   ...
-      |
-      |___subfolder
-          |   ...   
-
-  # from project subfolder
-  path_to_response_file = "../../exchange_rate/response.txt"
-  ```
- 
 ## Sequence Diagram
 <img src=".github/sequence-diagram.png" width="700px">
 
