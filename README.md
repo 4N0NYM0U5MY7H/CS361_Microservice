@@ -21,11 +21,11 @@ cd Documents/GitHub
 # Clone this repository
 git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 
-# Go into the microservice directory
-cd CS361_Partner_Microservice/exchange_rate
-
 # Install dependencies
 python -m pip install requests
+
+# Go into the microservice directory
+cd CS361_Partner_Microservice/exchange_rate
 
 # Run the microservice
 python main.py
@@ -137,6 +137,7 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
         ``` 
 * Check that your program is sending requests to `exchange_rate/requests.txt`
 * Check that your program is receiving responses from `exchange_rate/response.txt`
+  
   ```Python
   project
   |   ...
