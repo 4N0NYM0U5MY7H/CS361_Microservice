@@ -38,7 +38,7 @@ For more cloning options, please visit the [GitHub Docs page for cloning a repos
 ### Sending a Request
 Send a "`request`" to this microservice by updating `requests.txt` with two ISO 4217 Three Letter Currency Codes - e.g. `USD` for US Dollars, `EUR` for Euro etc. - separated by a comma.
 
-> Here's the list of [supported currency codes](https://www.exchangerate-api.com/docs/supported-currencies).
+> **Note**: Here's the list of [supported currency codes](https://www.exchangerate-api.com/docs/supported-currencies).
 
 ### Receving a Response
 After a valid "`request`", the microservice will send a reponse to `response.txt` containing the exchange rate - e.g. request: `USD,EUR` response: `0.932527`.
@@ -92,7 +92,7 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 >>> The exchange rate from USD to EUR is 0.932527.
 ```
 
-> Note: The microservice must be running BEFORE the client sends a request.
+> **Note**: The microservice must be running BEFORE the client sends a request.
 
 ## Sequence Diagram
 <img src=".github/sequence-diagram.png" width="700px">
