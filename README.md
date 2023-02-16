@@ -30,6 +30,14 @@ cd CS361_Partner_Microservice/exchange_rate
 # Run the microservice
 python main.py
 ```
+### Open a new Terminal
+```bash
+# Move into the install directory
+cd Documents/GitHub/CS361_Partner_Microservice
+
+# Run the sample client program
+python example.py
+```
 
 ### More Options:
 For more cloning options, please visit the [GitHub Docs page for cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
