@@ -3,10 +3,10 @@ import time
 import re
 
 # <path_to_requests_file> points to the request file in the microservice directory
-path_to_requests_file = "exchange_rate/requests.txt"
+path_to_requests_file = "data/requests.txt"
 
 # <path_to_response_file> points to the request file in the microservice directory
-path_to_response_file = "exchange_rate/response.txt"
+path_to_response_file = "data/response.txt"
 
 # example currencies to exchange
 base_currency = "usd"
@@ -30,8 +30,8 @@ while True:
     # Valid reponse received
     if re.search("^(0|[1-9]\d*)?(\.\d+)?(?<=\d)$", exchange_rate):
         # acknowledge valid response in <path_to_response_file>
-        with open(path_to_response_file, "w") as out_file:
-            out_file.write("Response Received")
+        with open(path_to_response_file, "a") as out_file:
+            out_file.write("\nResponse Received")
         break
 
 # View the results

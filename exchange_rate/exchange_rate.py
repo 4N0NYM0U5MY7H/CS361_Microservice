@@ -14,13 +14,13 @@ __version__ = "1.0.0"
 
 
 def request_path():
-    """Returns the file path for the desired request file."""
-    return "requests.txt"
+    """Returns the file path for the request file."""
+    return "data/requests.txt"
 
 
 def response_path():
-    """Returns the file path for the desired reponse file."""
-    return "response.txt"
+    """Returns the file path for the reponse file."""
+    return "data/response.txt"
 
 
 def api_url():
@@ -29,7 +29,7 @@ def api_url():
 
 
 def create_file(filepath):
-    """Creates the desired request file if it does not exist."""
+    """Creates the request file if it does not exist."""
     try:
         with open(filepath, "r") as in_file:
             try:

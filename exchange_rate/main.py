@@ -58,9 +58,9 @@ if __name__ == "__main__":
                 print("Request Received...\nProcessing...")
 
                 try:
-                    with open(request_file, "w") as in_file:
+                    with open(request_file, "a") as in_file:
                         try:
-                            in_file.write("Request Recieved")
+                            in_file.write("\nRequest Recieved")
                         except OSError as error:
                             print(f"Recieve Request: {error}")
                             time.sleep(3)
