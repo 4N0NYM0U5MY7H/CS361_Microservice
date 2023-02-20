@@ -16,10 +16,27 @@ if __name__ == "__main__":
     request_file = exchange_rate.request_path()
     response_file = exchange_rate.response_path()
 
-    print("Starting Microservice...")
+    line = "+" + str("=" * 77) + "+"
+
+    print(
+        f"""{line}
+
+                          /$$                     /$$   /$$
+                         | $$                    | $$  / $$
+      /$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$       |  $$/ $$/
+     /$$__  $$|____  $$|_  $$_/   /$$__  $$       \  $$$$/ 
+    | $$  \__/ /$$$$$$$  | $$    | $$$$$$$$        >$$  $$ 
+    | $$      /$$__  $$  | $$ /$$| $$_____/       /$$/\  $$
+    | $$     |  $$$$$$$  |  $$$$/|  $$$$$$$      | $$  \ $$
+    |__/      \_______/   \___/   \_______/      |__/  |__/
+
+      The accurate and reliable rate exchange microservice.
+
+{line}"""
+    )
     exchange_rate.create_file(request_file)
     exchange_rate.create_file(response_file)
-    print(f"Listening for requests from {request_file} ...")
+    print(f"\nListening for requests from {request_file} ...")
 
     try:
         while True:
