@@ -22,10 +22,7 @@ cd Documents/GitHub
 git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 
 # Install dependencies
-### Using pip
 python -m pip install requests
-### Using the Pipfile
-pipenv install
 
 # Run the microservice
 python exchange_rate/main.py
@@ -88,8 +85,8 @@ while True:
     # Valid reponse received
     if re.search("^(0|[1-9]\d*)?(\.\d+)?(?<=\d)$", exchange_rate):
         # acknowledge valid response in <path_to_response_file>
-        with open(path_to_response_file, "w") as out_file:
-            out_file.write("Response Received")
+        with open(path_to_response_file, "a") as out_file:
+            out_file.write("\nResponse Received")
         break
 
 # View the results
@@ -99,6 +96,15 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 # Expected Output
 The exchange rate from USD to EUR is 0.932527.
 ```
+
+## Project Integration
+After downloading the files, move or copy the `data` and `exchange_rate` directories to the root of your project.
+```Bash
+# run the microservice from your project root
+python exchange_rate/main.py
+```
+* You can now send requests to the microservice by sending a valid request string to `data/requests.txt`.
+* You can now recieve responses from the microservice by reading the information in `data/response.txt`.
 
 > **Note**: The microservice must be running BEFORE the client sends a request.
 
@@ -146,7 +152,7 @@ The exchange rate from USD to EUR is 0.932527.
         cd exchange_rate
         python main.py # Will cause issues with "requests.txt" and "response.txt"
         ``` 
-* Check that your program is sending requests to `exchange_rate/requests.txt`
+* Check that your program is sending requests to `data/requests.txt`
 * Check that your program is receiving responses from `data/response.txt`
   
   ```Python
