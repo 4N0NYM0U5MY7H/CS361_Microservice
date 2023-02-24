@@ -8,7 +8,7 @@
 <br>
 
 ## Installation
-To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
+To clone and run these files, you must have [Python 3.10+](https://www.python.org/downloads/release/python-3100/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
 
 ### Dependencies
 This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
@@ -24,11 +24,8 @@ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
 # Install dependencies
 python -m pip install requests
 
-# Go into the microservice directory
-cd CS361_Partner_Microservice/exchange_rate
-
 # Run the microservice
-python main.py
+python exchange_rate/main.py
 ```
 ### Open a new Terminal
 ```bash
@@ -44,12 +41,12 @@ For more cloning options, please visit the [GitHub Docs page for cloning a repos
 
 ## Using the Microservice
 ### Sending a Request
-Send a "`request`" to this microservice by updating `requests.txt` with two ISO 4217 Three Letter Currency Codes - e.g. `USD` for US Dollars, `EUR` for Euro etc. - separated by a comma.
+Send a "`request`" to this microservice by updating `data/requests.txt` with two ISO 4217 Three Letter Currency Codes - e.g. `USD` for US Dollars, `EUR` for Euro etc. - separated by a comma.
 
 > **Note**: Here's the list of [supported currency codes](https://www.exchangerate-api.com/docs/supported-currencies).
 
 ### Receving a Response
-After a valid "`request`", the microservice will send a reponse to `response.txt` containing the exchange rate - e.g. request: `USD,EUR` response: `0.932527`.
+After a valid "`request`", the microservice will send a reponse to `data/response.txt` containing the exchange rate - e.g. request: `USD,EUR` response: `0.932527`.
 
 ### Animated Demo
 <img src=".github/request-response.gif" height="350px">
@@ -60,11 +57,11 @@ After a valid "`request`", the microservice will send a reponse to `response.txt
 import time
 import re
 
-# <path_to_requests_file> points to the request file in the microservice directory
-path_to_requests_file = "exchange_rate/requests.txt"
+# <path_to_requests_file> points to the request file in the data directory
+path_to_requests_file = "data/requests.txt"
 
-# <path_to_response_file> points to the request file in the microservice directory
-path_to_response_file = "exchange_rate/response.txt"
+# <path_to_response_file> points to the request file in the data directory
+path_to_response_file = "data/response.txt"
 
 # example currencies to exchange
 base_currency = "usd"
@@ -88,8 +85,8 @@ while True:
     # Valid reponse received
     if re.search("^(0|[1-9]\d*)?(\.\d+)?(?<=\d)$", exchange_rate):
         # acknowledge valid response in <path_to_response_file>
-        with open(path_to_response_file, "w") as out_file:
-            out_file.write("Response Received")
+        with open(path_to_response_file, "a") as out_file:
+            out_file.write("\nResponse Received")
         break
 
 # View the results
@@ -100,10 +97,19 @@ print(f"The exchange rate from USD to EUR is {exchange_rate}.")
 The exchange rate from USD to EUR is 0.932527.
 ```
 
+## Project Integration
+After downloading the files, move or copy the `data` and `exchange_rate` directories to the root of your project.
+```Bash
+# run the microservice from your project root
+python exchange_rate/main.py
+```
+* You can now send requests to the microservice by sending a valid request string to `data/requests.txt`.
+* You can now recieve responses from the microservice by reading the information in `data/response.txt`.
+
 > **Note**: The microservice must be running BEFORE the client sends a request.
 
 ## Troubleshooting
-* Check that you have [python 3.9+](https://www.python.org/downloads/release/python-390/) installed on your local machine
+* Check that you have [python 3.10+](https://www.python.org/downloads/release/python-3100/) installed on your local machine
   ```bash
   python --version
   ```
@@ -111,17 +117,19 @@ The exchange rate from USD to EUR is 0.932527.
   ```bash
   python -m pip install requests
   ```
-* Check that the `exchange_rate` folder is in the root of your project
+* Check that the `exchange_rate` and `data` folders are in the root of your project
   ```
   project
   |   README.md
   |   project files
   |   ...
+  |___data
+  |   |   requests.txt
+  |   |   response.txt
+  |
   |___exchage_rate
   |   |   exchage_rate.py
   |   |   main.py
-  |   |   requests.txt
-  |   |   response.txt
   |
   |___folder
       |   folder files
@@ -131,37 +139,38 @@ The exchange rate from USD to EUR is 0.932527.
           |   subfolder files
           |   ...   
   ```
-  * **Run the microservice from the `exhange_rate` directory**.
+  * **Run the microservice from your project root**.
     ```bash
-    # Move into the exchange_rate directory
-    cd exchange_rate
+    # Move into to your project root directory
+    cd my/project/root
     # Start the microservice
-    python main.py
+    python exchange_rate/main.py
     ```
     * If you do NOT, then you will encounter issues related to the communication files.
         ```bash
         # DO NOT do this!
-        python exchange_rate/main.py # Will cause issues with "requests.txt" and "response.txt"
+        cd exchange_rate
+        python main.py # Will cause issues with "requests.txt" and "response.txt"
         ``` 
-* Check that your program is sending requests to `exchange_rate/requests.txt`
-* Check that your program is receiving responses from `exchange_rate/response.txt`
+* Check that your program is sending requests to `data/requests.txt`
+* Check that your program is receiving responses from `data/response.txt`
   
   ```Python
   project
   |   ...
-  |___exchage_rate
+  |___data
   |   |   ...
   |   |   requests.txt 
   |   |   response.txt
   
   # from project root
-  path_to_requests_file = "exchange_rate/requests.txt"
-  path_to_response_file = "exchange_rate/response.txt"
+  path_to_requests_file = "data/requests.txt"
+  path_to_response_file = "data/response.txt"
   ```
   ```Python
   project
   |   ...
-  |___exchage_rate
+  |___data
   |   |   ...
   |   |   requests.txt
   |   |   response.txt
@@ -170,13 +179,13 @@ The exchange rate from USD to EUR is 0.932527.
       |   ...  
   
   # from project folder
-  path_to_requests_file = "../exchange_rate/requests.txt"
-  path_to_response_file = "../exchange_rate/response.txt"
+  path_to_requests_file = "../data/requests.txt"
+  path_to_response_file = "../data/response.txt"
   ```
   ```Python
   project
   |   ...
-  |___exchage_rate
+  |___data
   |   |   ...
   |   |   requests.txt
   |   |   response.txt
@@ -188,8 +197,8 @@ The exchange rate from USD to EUR is 0.932527.
           |   ...   
 
   # from project subfolder
-  path_to_requests_file = "../../exchange_rate/requests.txt"
-  path_to_response_file = "../../exchange_rate/response.txt"
+  path_to_requests_file = "../../data/requests.txt"
+  path_to_response_file = "../../data/response.txt"
   ```
   > **[Learn more about paths](https://www.redhat.com/sysadmin/linux-path-absolute-relative)**.
 

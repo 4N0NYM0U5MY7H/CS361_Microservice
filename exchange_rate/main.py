@@ -1,6 +1,6 @@
 # Author: August Frisk
 # GitHub username: @4N0NYM0U5MY7H
-# Date: 2023, February 8
+# Date: 2023, February 24
 # Description: This microservice gets the current exchange rate using the
 #              Open Access EchangeRate-API endpoint.
 #              https://www.exchangerate-api.com/docs/free
@@ -16,10 +16,27 @@ if __name__ == "__main__":
     request_file = exchange_rate.request_path()
     response_file = exchange_rate.response_path()
 
-    print("Starting Microservice...")
+    line = "+" + str("=" * 77) + "+"
+
+    print(
+        f"""{line}
+
+                          /$$                     /$$   /$$
+                         | $$                    | $$  / $$
+      /$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$       |  $$/ $$/
+     /$$__  $$|____  $$|_  $$_/   /$$__  $$       \  $$$$/ 
+    | $$  \__/ /$$$$$$$  | $$    | $$$$$$$$        >$$  $$ 
+    | $$      /$$__  $$  | $$ /$$| $$_____/       /$$/\  $$
+    | $$     |  $$$$$$$  |  $$$$/|  $$$$$$$      | $$  \ $$
+    |__/      \_______/   \___/   \_______/      |__/  |__/
+
+      An accurate and reliable rate exchange microservice.
+
+{line}"""
+    )
     exchange_rate.create_file(request_file)
     exchange_rate.create_file(response_file)
-    print(f"Listening for requests from {request_file} ...")
+    print(f"\nListening for requests from {request_file} ...")
 
     try:
         while True:
@@ -58,9 +75,9 @@ if __name__ == "__main__":
                 print("Request Received...\nProcessing...")
 
                 try:
-                    with open(request_file, "w") as in_file:
+                    with open(request_file, "a") as in_file:
                         try:
-                            in_file.write("Request Recieved")
+                            in_file.write("\nRequest Recieved")
                         except OSError as error:
                             print(f"Recieve Request: {error}")
                             time.sleep(3)
