@@ -8,7 +8,7 @@
 <br>
 
 ## Installation
-To clone and run these files, you must have [Python 3.9+](https://www.python.org/downloads/release/python-390/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
+To clone and run these files, you must have [Python 3.10+](https://www.python.org/downloads/release/python-3100/) with IDLE or an alternative text editor, such as Atom or Visual Studio Code, installed on your local machine.
 
 ### Dependencies
 This microservices requires the [requests 2.28+ python library](https://pypi.org/project/requests/).
@@ -109,7 +109,7 @@ python exchange_rate/main.py
 > **Note**: The microservice must be running BEFORE the client sends a request.
 
 ## Troubleshooting
-* Check that you have [python 3.9+](https://www.python.org/downloads/release/python-390/) installed on your local machine
+* Check that you have [python 3.10+](https://www.python.org/downloads/release/python-3100/) installed on your local machine
   ```bash
   python --version
   ```
