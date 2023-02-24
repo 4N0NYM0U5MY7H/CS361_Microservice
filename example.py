@@ -2,10 +2,10 @@
 import time
 import re
 
-# <path_to_requests_file> points to the request file in the microservice directory
+# <path_to_requests_file> points to the request file in the data directory
 path_to_requests_file = "data/requests.txt"
 
-# <path_to_response_file> points to the request file in the microservice directory
+# <path_to_response_file> points to the request file in the data directory
 path_to_response_file = "data/response.txt"
 
 # example currencies to exchange

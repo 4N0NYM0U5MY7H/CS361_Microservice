@@ -1,6 +1,6 @@
 # Author: August Frisk
 # GitHub username: @4N0NYM0U5MY7H
-# Date: 2023, February 8
+# Date: 2023, February 24
 # Description: This microservice gets the current exchange rate using the
 #              Open Access EchangeRate-API endpoint.
 #              https://www.exchangerate-api.com/docs/free
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     | $$     |  $$$$$$$  |  $$$$/|  $$$$$$$      | $$  \ $$
     |__/      \_______/   \___/   \_______/      |__/  |__/
 
-      The accurate and reliable rate exchange microservice.
+      An accurate and reliable rate exchange microservice.
 
 {line}"""
     )
