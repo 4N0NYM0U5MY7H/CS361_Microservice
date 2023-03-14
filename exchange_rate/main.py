@@ -1,14 +1,16 @@
-# Author: August Frisk
-# GitHub username: @4N0NYM0U5MY7H
-# Date: 2023, February 24
-# Description: This microservice gets the current exchange rate using the
-#              Open Access EchangeRate-API endpoint.
-#              https://www.exchangerate-api.com/docs/free
+r"""rate_X - currency exchage rate microservice.
+
+This microserive gets up-to-date exchange rate information using the
+Open Access ExchangeRate-API endpoint:
+<https://www.exchangerate-api.com/free>"""
 
 import requests
 import time
 import re
 import exchange_rate
+
+__version__ = "1.4.1"
+__author__ = "August Frisk <https://github.com/users/4N0NYM0U5MY7H>"
 
 
 if __name__ == "__main__":
