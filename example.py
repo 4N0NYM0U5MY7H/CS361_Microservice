@@ -3,8 +3,10 @@ import time
 import re
 
 # <path_to_requests_file> points to the request file in the data directory
+# NOTE: This example assumes the client is at the project root
 path_to_requests_file = "data/requests.txt"
 
+# NOTE: This example assumes the client is at the project root
 # <path_to_response_file> points to the request file in the data directory
 path_to_response_file = "data/response.txt"
 
