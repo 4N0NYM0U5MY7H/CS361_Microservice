@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed 
 - Rewrite project README.
 - Update main.py docstring.
-- Update exchange_rate to include customizable variables for the `request`/`response` files.
+- Update exchange_rate to include customizable variables for the `request` and `response` files.
 - Minor changes for accessing the `data` directory.
 
 ## [1.3.0] - 2023-02-24
@@ -82,6 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project README.
 - .gitignore
 
+[1.4.1]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/releases/tag/v1.4.1
 [1.3.0]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/pull/5
 [1.2.9]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/commits/main?since=2023-02-15&until=20213-02-15
 [1.2.4]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/commits/main?since=2023-02-14&until=20213-02-14
