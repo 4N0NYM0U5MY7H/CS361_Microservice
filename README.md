@@ -56,8 +56,8 @@ All installation is handled using `pip` or `pipenv`. The following steps will in
 ### Build and prepare the Microservice
 ```sh
 # Terminal 1
-$ git clone https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice
-$ cd CS361_Partner_Microservice
+$ git clone https://github.com/4N0NYM0U5MY7H/CS361_Microservice
+$ cd CS361_Microservice
 
 # Option 1: Install depencies globally
 $ python -m pip install requests
@@ -73,7 +73,7 @@ $ python main.py
 ### Test the Microservice is working correctly
 ```sh
 # Terminal 2
-$ cd CS361_Partner_Microservice
+$ cd CS361_Microservice
 $ python example.py
 
 # Expected output
@@ -149,12 +149,12 @@ The exchange rate from USD to EUR is 0.932527.
 Move or copy the `data` and `exchange_rate` directories to the root of your project.
 ```sh
 # Unix systems
-$ cd CS361_Partner_Microservice
+$ cd CS361_Microservice
 $ mv exchange_rate data <path-to-project-root>
 ```
 ```sh
 # windows
-> cd CS361_Partner_Microservice
+> cd CS361_Microservice
 > move exchange_rate <path-to-project-root>
 > move data <path-to-project-root>
 ```
