@@ -10,10 +10,10 @@
   <img src=".github/osu-ecampus-light.png" alt="Oregon State University Ecampus Logo." />
 </picture>
 
-# CS361: Microservice for Partner — Currency Exchange Rate Microservice
+# CS361: Microservice — Currency Exchange Rate
 
 ## Table of Contents
-- [CS361: Microservice for Partner — Currency Exchange Rate Microservice](#cs361-microservice-for-partner--currency-exchange-rate-microservice)
+- [CS361: Microservice — Currency Exchange Rate](#cs361-microservice--currency-exchange-rate)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
   - [Getting Started](#getting-started)
@@ -29,12 +29,15 @@
     - [Sample Client in Python](#sample-client-in-python)
   - [Sequence Diagram](#sequence-diagram)
   - [Project Integration](#project-integration)
+    - [Option 1: Move or copy the `data` and `exchange_rate` directories to the root of your project.](#option-1-move-or-copy-the-data-and-exchange_rate-directories-to-the-root-of-your-project)
+    - [Option 2: Clone this microservice to your project root.](#option-2-clone-this-microservice-to-your-project-root)
+      - [Optional: Configure the `exchange_rate.py` file.](#optional-configure-the-exchange_ratepy-file)
     - [Troubleshooting](#troubleshooting)
   - [Built With](#built-with)
   - [License](#license)
 
 ## About
-Microservice for my partner's Course Project for the Software Engineering 1 course (CS 361) at Oregon State University. This microservice uses the [Open Access EchangeRate-API endpoint](https://www.exchangerate-api.com/docs/free) to generate currency exchange rate information.
+Microservice for my partner's course project in Software Engineering 1 (CS 361) at Oregon State University. This microservice uses the [Open Access EchangeRate-API endpoint](https://www.exchangerate-api.com/docs/free) to generate currency exchange rate information.
 
 ## Getting Started
 These instructions will get you a copy of the microservice up and running on your local machine.
@@ -146,7 +149,7 @@ The exchange rate from USD to EUR is 0.932527.
 <img src=".github/sequence-diagram.png" width="700px">
 
 ## Project Integration
-Move or copy the `data` and `exchange_rate` directories to the root of your project.
+### Option 1: Move or copy the `data` and `exchange_rate` directories to the root of your project.
 ```sh
 # Unix systems
 $ cd CS361_Microservice
@@ -165,6 +168,30 @@ $ python main.py
 ```
 * You can now send `request`s to the microservice by sending a valid request string to `data/requests.txt`.
 * You can now recieve `response`s from the microservice by reading the information in `data/response.txt`.
+
+### Option 2: Clone this microservice to your project root.
+> **Note**: see [Getting Started](#getting-started).
+
+#### Optional: Configure the `exchange_rate.py` file.
+    * Open `exchange_rate.py` in a text editor.
+    * Change the values of any of the `internal variables` section to suit your needs.
+> **Note**: Any changes made here will need to be reflected in your client program when communicating with the microservice.
+
+```sh
+# Run the microservice
+$ cd <path-to-project-root>/CS361_Microservice/exchange_rate
+$ python main.py
+```
+* You can now send `request`s to the microservice by sending a valid request string to:
+  * No changes made to `exchange_rate.py`:
+    * `CS361_Microservice/data/requests.txt`.
+  * Changes made to `exchange_rate.py`:
+    * `<your-changed-directory>/<your-changed-request-file>`.
+* You can now recieve `response`s from the microservice by reading the information from:
+  * No changes made to `exchange_rate.py`:
+    * `CS361_Microservice/data/response.txt`.
+  * Changes made to `exchange_rate.py`:
+    * `<your-changed-directory>/<your-changed-response-file>`.
 
 > **Note**: The microservice must be running **BEFORE** the client sends a request.
 
@@ -262,9 +289,9 @@ $ python main.py
   > **[Learn more about paths](https://www.redhat.com/sysadmin/linux-path-absolute-relative)**.
 
 ## Built With
-* [Python 3.10.0](https://www.python.org/downloads/release/python-3100/) - Powerful, fast, and easy to learn open language that runs everywhere.
-* [Requests 2.28.2](https://pypi.org/project/requests/) - Simple, yet elegant, HTTP library.
-* [ExchangeRate-API](https://www.exchangerate-api.com/docs/free) - Accurate and reliable
+* [![Python 3.10](https://img.shields.io/badge/v3.10-3776AB?label=Python&labelColor=141414&logo=python&style=flat-square)](https://www.python.org/downloads/release/python-3100/) - Powerful, fast, and easy to learn open language that runs everywhere.
+* [![Requests 2.28.2](https://img.shields.io/badge/v2.28.2-3776AB?label=Requests&labelColor=141414&logo=python&style=flat-square)](https://pypi.org/project/requests/) - Simple, yet elegant, HTTP library.
+* [![ExchangeRate-API](https://img.shields.io/badge/v6-ED1C24?label=ExchangeRate-API&labelColor=141414&style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T52TPUwUURDHZ95twFMUbi9Wd3hvuXcelV5iYaQihKClFbG1MMHYWREbEwooSCgkNiSE1k4S7dSIhcSQgFpzcLuwEIr74I6QeNl3b5glR0LA04NJXvJmM/P7z8ybRWCrJfrjDQzmCDAW+m3YTszSz9B1/2AxeTuBYPw2ks6F2H53B5Z6M5+AaPhvAATYJ4CelnCBb7CUzPwCoLvnghBWyJhXiOJzK4Ahk20FMDVLX3O4x1JS/WRA7iwEEdfs7fV7TQCkLcQhTeYbB0aFEBP3r8As1YOnPwLxDgRunQWwQPSh1vFwBit2OjGAS0uastnr5cPGju3ne1RKVlglqoFurOrIewB8dAoyEffzr9NSLiIPCTOyb4zITDYQnILrVpXjvABDs2ECAr5d77r6slytH7Jr8TlggZi6JedRoI18GSeEqSa9Um9o1RmxdtnvPFFkcHQ1sJ4zbQYEjOao/r1DRHyu8COmU85vfoU7/9oDrqKY9wo3y0nlsrrknK+cM8iAD20BQjiRGN7c2vySkTJnCMKXgQsBOH5vw3MTKpWq8sp3XQYQ5izyeXzSbrMCucwfHlzmX+BVX0Al5SAR8FAubpWDWjdDAFSvGiGhp/l63Nv/jEsvBmSeeJ5XOAKMD7eyNrT8SAAAAABJRU5ErkJggg==)](https://www.exchangerate-api.com/docs/free) - Accurate and reliable
 exchange rate API.
 
 ## License

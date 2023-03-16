@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [1.4.2] - 2023-03-15
+### Changed
+- Updated README Project Integration to include instructions for cloning the project direcly to a project root as per request.
+
 ## [1.4.1] - 2023-03-13
 ### Added
 - CHANGELOG
@@ -82,6 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Project README.
 - .gitignore
 
+[1.4.2]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/releases/tag/v1.4.2
 [1.4.1]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/releases/tag/v1.4.1
 [1.3.0]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/pull/5
 [1.2.9]: https://github.com/4N0NYM0U5MY7H/CS361_Partner_Microservice/commits/main?since=2023-02-15&until=20213-02-15
