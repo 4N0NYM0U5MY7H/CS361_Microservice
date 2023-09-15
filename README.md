@@ -12,6 +12,13 @@
 
 # CS361: Microservice — Currency Exchange Rate
 
+> **Note**: this repository is not maintained. It is only here for archival purposes. If you would like to use this microservice, please fork this repository.
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/4N0NYM0U5MY7H/CS361_Microservice?color=3776AB&label=Release&logo=github&style=flat-square)](https://github.com/4N0NYM0U5MY7H/CS361_Microservice/releases/tag/v1.4.2)
+![Last Updated](https://img.shields.io/badge/March_2023-critical?label=Last%20Updated&style=flat-square)
+![Not Maintained](https://img.shields.io/badge/Not_Maintained-critical?label=Status&style=flat-square)
+
+
 ## Table of Contents
 
 <details>
