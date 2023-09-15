@@ -13,6 +13,10 @@
 # CS361: Microservice — Currency Exchange Rate
 
 ## Table of Contents
+
+<details>
+<summary><strong>Expand to view</strong></summary>
+
 - [CS361: Microservice — Currency Exchange Rate](#cs361-microservice--currency-exchange-rate)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
@@ -36,8 +40,10 @@
   - [Built With](#built-with)
   - [License](#license)
 
+</details>
+
 ## About
-Microservice for my partner's course project in Software Engineering 1 (CS 361) at Oregon State University. This microservice uses the [Open Access EchangeRate-API endpoint](https://www.exchangerate-api.com/docs/free) to generate currency exchange rate information.
+Microservice created for [@jay2002shah](https://github.com/jay2002shah/)'s course project in Software Engineering 1 (CS 361) at Oregon State University. This microservice uses the [Open Access EchangeRate-API endpoint](https://www.exchangerate-api.com/docs/free) to generate currency exchange rate information.
 
 ## Getting Started
 These instructions will get you a copy of the microservice up and running on your local machine.
@@ -289,10 +295,9 @@ $ python main.py
   > **[Learn more about paths](https://www.redhat.com/sysadmin/linux-path-absolute-relative)**.
 
 ## Built With
-* [![Python 3.10](https://img.shields.io/badge/v3.10-3776AB?label=Python&labelColor=141414&logo=python&style=flat-square)](https://www.python.org/downloads/release/python-3100/) - Powerful, fast, and easy to learn open language that runs everywhere.
-* [![Requests 2.28.2](https://img.shields.io/badge/v2.28.2-3776AB?label=Requests&labelColor=141414&logo=python&style=flat-square)](https://pypi.org/project/requests/) - Simple, yet elegant, HTTP library.
-* [![ExchangeRate-API](https://img.shields.io/badge/v6-ED1C24?label=ExchangeRate-API&labelColor=141414&style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T52TPUwUURDHZ95twFMUbi9Wd3hvuXcelV5iYaQihKClFbG1MMHYWREbEwooSCgkNiSE1k4S7dSIhcSQgFpzcLuwEIr74I6QeNl3b5glR0LA04NJXvJmM/P7z8ybRWCrJfrjDQzmCDAW+m3YTszSz9B1/2AxeTuBYPw2ks6F2H53B5Z6M5+AaPhvAATYJ4CelnCBb7CUzPwCoLvnghBWyJhXiOJzK4Ahk20FMDVLX3O4x1JS/WRA7iwEEdfs7fV7TQCkLcQhTeYbB0aFEBP3r8As1YOnPwLxDgRunQWwQPSh1vFwBit2OjGAS0uastnr5cPGju3ne1RKVlglqoFurOrIewB8dAoyEffzr9NSLiIPCTOyb4zITDYQnILrVpXjvABDs2ECAr5d77r6slytH7Jr8TlggZi6JedRoI18GSeEqSa9Um9o1RmxdtnvPFFkcHQ1sJ4zbQYEjOao/r1DRHyu8COmU85vfoU7/9oDrqKY9wo3y0nlsrrknK+cM8iAD20BQjiRGN7c2vySkTJnCMKXgQsBOH5vw3MTKpWq8sp3XQYQ5izyeXzSbrMCucwfHlzmX+BVX0Al5SAR8FAubpWDWjdDAFSvGiGhp/l63Nv/jEsvBmSeeJ5XOAKMD7eyNrT8SAAAAABJRU5ErkJggg==)](https://www.exchangerate-api.com/docs/free) - Accurate and reliable
-exchange rate API.
+* [![Python 3.10](https://img.shields.io/badge/v3.10-3776AB?label=Python&labelColor=141414&logo=python&style=flat-square)](https://www.python.org/downloads/release/python-3100/)
+* [![Requests 2.28.2](https://img.shields.io/badge/v2.28.2-3776AB?label=Requests&labelColor=141414&logo=python&style=flat-square)](https://pypi.org/project/requests/)
+* [![ExchangeRate-API](https://img.shields.io/badge/v6-ED1C24?label=ExchangeRate-API&labelColor=141414&style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB4UlEQVQ4T52TPUwUURDHZ95twFMUbi9Wd3hvuXcelV5iYaQihKClFbG1MMHYWREbEwooSCgkNiSE1k4S7dSIhcSQgFpzcLuwEIr74I6QeNl3b5glR0LA04NJXvJmM/P7z8ybRWCrJfrjDQzmCDAW+m3YTszSz9B1/2AxeTuBYPw2ks6F2H53B5Z6M5+AaPhvAATYJ4CelnCBb7CUzPwCoLvnghBWyJhXiOJzK4Ahk20FMDVLX3O4x1JS/WRA7iwEEdfs7fV7TQCkLcQhTeYbB0aFEBP3r8As1YOnPwLxDgRunQWwQPSh1vFwBit2OjGAS0uastnr5cPGju3ne1RKVlglqoFurOrIewB8dAoyEffzr9NSLiIPCTOyb4zITDYQnILrVpXjvABDs2ECAr5d77r6slytH7Jr8TlggZi6JedRoI18GSeEqSa9Um9o1RmxdtnvPFFkcHQ1sJ4zbQYEjOao/r1DRHyu8COmU85vfoU7/9oDrqKY9wo3y0nlsrrknK+cM8iAD20BQjiRGN7c2vySkTJnCMKXgQsBOH5vw3MTKpWq8sp3XQYQ5izyeXzSbrMCucwfHlzmX+BVX0Al5SAR8FAubpWDWjdDAFSvGiGhp/l63Nv/jEsvBmSeeJ5XOAKMD7eyNrT8SAAAAABJRU5ErkJggg==)](https://www.exchangerate-api.com/docs/free)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](license) file for details.
