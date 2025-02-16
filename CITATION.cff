@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: rate_X
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: August
+    family-names: Frisk
+    orcid: 'https://orcid.org/0009-0007-9200-8438'
+    email: friska@oregonstate.edu
+    affiliation: Oregon State University
+repository-code: 'https://github.com/4N0NYM0U5MY7H/CS361_Microservice'
+abstract: >-
+  Microservice created for @jay2002shah's course project in
+  Software Engineering 1 (CS 361) at Oregon State
+  University. This microservice uses the Open Access
+  EchangeRate-API endpoint to generate currency exchange
+  rate information.
+license: MIT
+commit: 6e8a33db5fb93908d7177796e9313dddbb894cfe
+version: 1.4.2
+date-released: '2023-03-15'
