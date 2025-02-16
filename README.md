@@ -18,37 +18,6 @@
 ![Last Updated](https://img.shields.io/badge/March_2023-critical?label=Last%20Updated&style=flat-square)
 ![Not Maintained](https://img.shields.io/badge/Not_Maintained-critical?label=Status&style=flat-square)
 
-
-## Table of Contents
-
-<details>
-<summary><strong>Expand to view</strong></summary>
-
-- [CS361: Microservice — Currency Exchange Rate](#cs361-microservice--currency-exchange-rate)
-  - [Table of Contents](#table-of-contents)
-  - [About](#about)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [References](#references)
-  - [Installation](#installation)
-    - [Build and prepare the Microservice](#build-and-prepare-the-microservice)
-    - [Test the Microservice is working correctly](#test-the-microservice-is-working-correctly)
-  - [Using the Microservice](#using-the-microservice)
-    - [Sending a Request](#sending-a-request)
-    - [Receiving a Response](#receiving-a-response)
-    - [Visual Request/Response Demo](#visual-requestresponse-demo)
-    - [Sample Client in Python](#sample-client-in-python)
-  - [Sequence Diagram](#sequence-diagram)
-  - [Project Integration](#project-integration)
-    - [Option 1: Move or copy the `data` and `exchange_rate` directories to the root of your project.](#option-1-move-or-copy-the-data-and-exchange_rate-directories-to-the-root-of-your-project)
-    - [Option 2: Clone this microservice to your project root.](#option-2-clone-this-microservice-to-your-project-root)
-      - [Optional: Configure the `exchange_rate.py` file.](#optional-configure-the-exchange_ratepy-file)
-    - [Troubleshooting](#troubleshooting)
-  - [Built With](#built-with)
-  - [License](#license)
-
-</details>
-
 ## About
 Microservice created for [@jay2002shah](https://github.com/jay2002shah/)'s course project in Software Engineering 1 (CS 361) at Oregon State University. This microservice uses the [Open Access EchangeRate-API endpoint](https://www.exchangerate-api.com/docs/free) to generate currency exchange rate information.
 
